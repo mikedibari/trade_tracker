@@ -1,0 +1,29 @@
+# Ignore virtual environment
+venv/
+
+# Ignore environment variables
+.env
+
+# Ignore Python bytecode files
+*.pyc
+*.pyo
+__pycache__/
+
+# Ignore database file
+# db.sqlite3
+
+# Ignore static files and media
+staticfiles/
+media/
+
+# Ignore log files
+*.log
+logs/
+
+# Ignore temporary files
+*.swp
+*.swo
+.DS_Store
+
+.pytest_cache
+.vscode
