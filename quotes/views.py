@@ -6,14 +6,6 @@ from .serializers import StockSerializer
 from .forms import StockForm
 from django.contrib import messages
 from decouple import config
-# from dotenv import load_dotenv
-# import os
-
-# import api_key
-# load_dotenv()
-# api_key = os.getenv("api_key")
-
-
 
 
 # rest api for items in stock database model
