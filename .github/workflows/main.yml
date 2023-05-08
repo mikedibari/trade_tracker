@@ -50,7 +50,7 @@ jobs:
         env:
           api_key: ${{ secrets.api_key }}
         run: |
-        echo "export api_key=$api_key" >> $GITHUB_ENV
+        echo "api_key=${{ secrets.api_key }}" >> $GITHUB_ENV
       
       # Runs database migrations on the Django app
       - name: Run migrations
