@@ -48,10 +48,8 @@ jobs:
       # Allow access to api key    
       - name: Set up environment variables
         env:
-          api_key: ${{ secrets.api_key }}
-        run: |
-        echo "api_key=${{ secrets.api_key }}" >> $GITHUB_ENV
-      
+          api_key: ${{ secrets.API_KEY }}
+        
       # Runs database migrations on the Django app
       - name: Run migrations
         run: python manage.py migrate
