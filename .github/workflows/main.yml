@@ -44,12 +44,7 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           python -m pip install -r requirements.txt 
-
-      # Allow access to api key    
-      - name: Set up environment variables
-        env:
-          api_key: ${{ secrets.API_KEY }}
-        
+           
       # Runs database migrations on the Django app
       - name: Run migrations
         run: python manage.py migrate
