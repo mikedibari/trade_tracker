@@ -7,7 +7,6 @@ from .forms import StockForm
 from django.contrib import messages
 from decouple import config
 
-api_key = config("api_key")
 
 # rest api for items in stock database model
 class StockView(viewsets.ModelViewSet):
@@ -67,7 +66,9 @@ def get_cost_basis(buy_price, quantity):
 
 def get_api(ticker):
     import requests
-    import json    
+    import json
+
+    api_key = config("api_key")
     
     try:
         response = requests.get("https://api.iex.cloud/v1/data/core/quote/" + ticker + "?token=" + api_key)        

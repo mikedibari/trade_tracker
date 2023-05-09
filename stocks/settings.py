@@ -1,7 +1,8 @@
 from pathlib import Path
 from decouple import config
 
-api_key = config("api_key")
+
+API_KEY = config('api_key')
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
