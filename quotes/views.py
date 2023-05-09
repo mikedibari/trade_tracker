@@ -68,7 +68,7 @@ def get_api(ticker):
     import requests
     import json
 
-    api_key = config("api_key")
+    api_key = config('API_KEY', default='default_value')
     
     try:
         response = requests.get("https://api.iex.cloud/v1/data/core/quote/" + ticker + "?token=" + api_key)        
@@ -110,7 +110,7 @@ def home(request): # request from web browser
     import requests
     import json
 
-    api_key = config("api_key")
+    api_key = config('API_KEY', default='default_value')
 
     if request.method == 'POST': # someone filled out form and clicked the button
         ticker = request.POST['ticker'] # name of input box
