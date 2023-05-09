@@ -5,7 +5,7 @@ from .models import Quote
 from .serializers import StockSerializer
 from .forms import StockForm
 from django.contrib import messages
-from decouple import config
+from django.conf import settings
 
 
 # rest api for items in stock database model
@@ -68,7 +68,7 @@ def get_api(ticker):
     import requests
     import json
 
-    api_key = config('API_KEY', default='default_value')
+    api_key = settings.API_KEY
     
     try:
         response = requests.get("https://api.iex.cloud/v1/data/core/quote/" + ticker + "?token=" + api_key)        
@@ -110,7 +110,7 @@ def home(request): # request from web browser
     import requests
     import json
 
-    api_key = config('API_KEY', default='default_value')
+    api_key = settings.API_KEY
 
     if request.method == 'POST': # someone filled out form and clicked the button
         ticker = request.POST['ticker'] # name of input box
