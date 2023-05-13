@@ -65,7 +65,7 @@ jobs:
           printenv
 
       # todo -- expose local PostgreSQL database running in a Docker container to GitHub Actions using localtunnel     
-      Runs database migrations on the Django app
+      # Runs database migrations on the Django app
       - name: Run migrations
         run: python manage.py migrate
       
