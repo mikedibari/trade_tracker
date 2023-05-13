@@ -53,21 +53,21 @@ jobs:
           DB_NAME: ${{ secrets.DB_NAME }}
           DB_USER: ${{ secrets.DB_USER }}
           DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
-          DB_HOST: ${{ secrets.DB_HOST }}
-          DB_PORT: ${{ secrets.DB_PORT }}
+          DB_HOST: http://deficio.serveo.net/
+          DB_PORT: 80
         run: |
           echo "API_KEY=${{ secrets.API_KEY }}" >> $GITHUB_ENV
           echo "DB_NAME=${{ secrets.DB_NAME }}" >> $GITHUB_ENV
           echo "DB_USER=${{ secrets.DB_USER }}" >> $GITHUB_ENV
           echo "DB_PASSWORD=${{ secrets.DB_PASSWORD }}" >> $GITHUB_ENV
-          echo "DB_HOST=${{ secrets.DB_HOST }}" >> $GITHUB_ENV
-          echo "DB_PORT=${{ secrets.DB_PORT }}" >> $GITHUB_ENV
+          echo "DB_HOST=http://deficio.serveo.net/" >> $GITHUB_ENV
+          echo "DB_PORT=80" >> $GITHUB_ENV
           printenv
-          
+
       # todo -- expose local PostgreSQL database running in a Docker container to GitHub Actions using localtunnel     
-      # Runs database migrations on the Django app
-#       - name: Run migrations
-#         run: python manage.py migrate
+      Runs database migrations on the Django app
+      - name: Run migrations
+        run: python manage.py migrate
       
       # Run all tests with verbose flag
 #       - name: Run all tests
