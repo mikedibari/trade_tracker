@@ -47,22 +47,22 @@ jobs:
           python -m pip install -r requirements.txt
 
       # Sets up access to API_KEY
-      - name: Set up environment variables        
+      - name: Set up environment variables
         env:
           API_KEY: ${{ secrets.API_KEY }}
           DB_NAME: ${{ secrets.DB_NAME }}
           DB_USER: ${{ secrets.DB_USER }}
           DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
           DB_HOST: ${{ secrets.DB_HOST }}
-          DB_PORT: 5432
+          DB_PORT: ${{ secrets.DB_PORT }}
         run: |
-          echo "API_KEY=${{ secrets.API_KEY }}" >> $GITHUB_ENV
           echo "API_KEY=${{ secrets.API_KEY }}" >> $GITHUB_ENV
           echo "DB_NAME=${{ secrets.DB_NAME }}" >> $GITHUB_ENV
           echo "DB_USER=${{ secrets.DB_USER }}" >> $GITHUB_ENV
           echo "DB_PASSWORD=${{ secrets.DB_PASSWORD }}" >> $GITHUB_ENV
           echo "DB_HOST=${{ secrets.DB_HOST }}" >> $GITHUB_ENV
-          echo "DB_PORT=5432" >> $GITHUB_ENV
+          echo "DB_PORT=${{ secrets.DB_PORT }}" >> $GITHUB_ENV
+          printenv
            
       # Runs database migrations on the Django app
       - name: Run migrations
