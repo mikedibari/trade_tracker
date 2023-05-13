@@ -53,14 +53,14 @@ jobs:
           DB_NAME: ${{ secrets.DB_NAME }}
           DB_USER: ${{ secrets.DB_USER }}
           DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
-          DB_HOST: http://deficio.serveo.net/
+          DB_HOST: deficio.serveo.net
           DB_PORT: 80
         run: |
           echo "API_KEY=${{ secrets.API_KEY }}" >> $GITHUB_ENV
           echo "DB_NAME=${{ secrets.DB_NAME }}" >> $GITHUB_ENV
           echo "DB_USER=${{ secrets.DB_USER }}" >> $GITHUB_ENV
           echo "DB_PASSWORD=${{ secrets.DB_PASSWORD }}" >> $GITHUB_ENV
-          echo "DB_HOST=http://deficio.serveo.net/" >> $GITHUB_ENV
+          echo "DB_HOST=deficio.serveo.net" >> $GITHUB_ENV
           echo "DB_PORT=80" >> $GITHUB_ENV
           printenv
 
