@@ -4,7 +4,9 @@
 **/.classpath
 **/.dockerignore
 **/.git
+**/.github
 **/.gitignore
+**/db.sqlite3
 **/.project
 **/.settings
 **/.toolstarget

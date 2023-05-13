@@ -3,9 +3,9 @@
 
 <h1>Watchlist</h1>
 <br/>
-
+<div class="table-responsive-lg">
 <table class="table table-striped table-bordered table-hover">
-    <thead class="thead-dark">
+    <thead class="thead-light">
         <tr>
             <th>Ticker</th>
             <th>Company Name</th>
@@ -27,9 +27,9 @@
                 <td>{{ item.change }}</td>
                 <td>{{ item.change_percent }}</td>
                 <td>
-                    <form method="post" action="{% url 'delete_quote' %}">
+                    <form method="post" action="{% url 'delete_quote' item.quote_id %}">
                         {% csrf_token %}
-                        <input type="hidden" name="quote_id" value="{{ item.quote_id }}">
+                        <!-- <input type="hidden" name="quote_id" value="{{ item.quote_id }}"> -->
                         <button type="submit">Delete</button>
                     </form>
                 </td>
@@ -38,4 +38,5 @@
         {% endif %}
     </tbody>
 </table>
+</div>
 {% endblock %}

@@ -14,6 +14,13 @@ class StockForm(forms.ModelForm):
     class Meta:
         model = Stock
         fields = ['ticker', 'buy_price', 'quantity', 'sell_price', 'open_date', 'close_date']
-        
+        # widgets = {
+        #     'ticker': forms.TextInput(attrs={'class': 'form-control'}),
+        #     'buy_price': forms.NumberInput(attrs={'class': 'form-control'}),
+        #     'quantity': forms.NumberInput(attrs={'class': 'form-control'}),
+        #     'sell_price': forms.NumberInput(attrs={'class': 'form-control'}),
+        #     'open_date': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
+        #     'close_date': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
+        # }
 
     

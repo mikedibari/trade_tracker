@@ -172,7 +172,7 @@ def about(request):
     return render(request, 'about.html', {})
 
 
-def add_stock(request):    
+def positions(request):    
     if request.method == 'POST': 
         # use django form system -- forms.py added
         form = StockForm(request.POST or None)
@@ -180,11 +180,11 @@ def add_stock(request):
 
         if form.is_valid() and check_ticker(ticker):
             form.save()
-            messages.success(request, ("Stock has been added!"))
-            return redirect('add_stock')
+            messages.success(request, ("Position has been added!"))
+            return redirect('positions')
         else:
             messages.success(request, ("Something went wrong..."))
-            return redirect('add_stock')
+            return redirect('positions')
     else:
         form = StockForm()
         # pull stuff from database model and call function for latest price
@@ -224,7 +224,7 @@ def add_stock(request):
                 'close_date': close_date
             })
 
-        return render(request, 'add_stock.html', {'form': form, 'data': combined_data})
+        return render(request, 'positions.html', {'form': form, 'data': combined_data})
     
 
 def delete_row(request, stock_id):
@@ -232,15 +232,15 @@ def delete_row(request, stock_id):
         try:
             instance = Stock.objects.get(pk=stock_id)
             instance.delete()
+            messages.success(request, ("Position has been deleted!"))
         except Stock.DoesNotExist:
-            pass
-    messages.success(request, ("Stock has been deleted!"))    
-    return redirect('add_stock')
+            messages.error(request, ("Position does not exist."))        
+    return redirect('positions')
     
 
-def delete_quote(request):
+def delete_quote(request, quote_id):
     if request.method == 'POST':
-        quote_id = request.POST.get('quote_id')
+        # quote_id = request.POST.get('quote_id')
         try:
             instance = Quote.objects.get(pk=quote_id)
             instance.delete()
@@ -250,4 +250,30 @@ def delete_quote(request):
     return redirect('quotes')
 
 
+# populates form fields with data from database
+def update_position(request, stock_id):
+    try:
+        position = Stock.objects.get(pk=stock_id)    
+        form = StockForm(instance=position)
+    except Stock.DoesNotExist:
+        messages.error(request, "Position does not exist.")
+        return redirect('positions')
+    return render(request, 'update_position.html', {'position': position, 'form': form})
 
+
+# saves the edited fields to the correspoding database entry
+def save_position(request):    
+    if request.method == 'POST':
+        stock_id = request.POST.get('stock_id') 
+        position = Stock.objects.get(pk=stock_id)     
+        form = StockForm(request.POST or None, instance=position)
+        ticker = form['ticker'].value()
+        if form.is_valid() and check_ticker(ticker):
+            form.save()
+            messages.success(request, ("Position has been updated!"))
+            return redirect('positions')
+        else:
+            messages.success(request, ("Something went wrong..."))
+            return redirect('positions')
+    else:
+        return redirect('positions')

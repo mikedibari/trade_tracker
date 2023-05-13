@@ -24,8 +24,8 @@ def test_homepage_access(client):
 
 # verify that the form is valid and page redirects back to itself 
 @pytest.mark.django_db
-def test_add_stock_view(client):
-    url = reverse('add_stock')
+def test_positions_view(client):
+    url = reverse('positions')
     form_data = {
         'ticker': 'AAPL',
         'buy_price': 100,

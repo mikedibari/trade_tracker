@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Update Position:</h1>
+<br/>
+<form method="post" action="{% url 'save_position' %}">
+    {% csrf_token %}
+      <div class="row">
+          <div class="col">{{ form.ticker.label_tag }}
+              {{ form.ticker }}
+          </div>
+          <div class="col">{{ form.buy_price.label_tag }}
+              {{ form.buy_price }}
+          </div>
+          <div class="col">{{ form.quantity.label_tag }}
+              {{ form.quantity }}
+          </div>
+          <div class="col">{{ form.sell_price.label_tag }}
+            {{ form.sell_price }}
+          </div>
+          <div class="col">{{ form.open_date.label_tag }}
+            {{ form.open_date }}
+          </div>
+          <div class="col">{{ form.close_date.label_tag }}
+            {{ form.close_date }}
+          </div>
+      </div>
+      <input type="hidden" name="stock_id" value="{{ position.pk }}">
+    <button type="submit">Submit</button>
+  </form>
+
+<!-- <form method="post" action="{% url 'save_position' %}">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <input type="hidden" name="stock_id" value="{{ position.pk }}">
+  <button type="submit">Submit</button>
+</form> -->
+
+{% endblock %}
+
