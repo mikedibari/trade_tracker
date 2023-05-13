@@ -65,8 +65,8 @@ jobs:
           printenv
            
       # Runs database migrations on the Django app
-      - name: Run migrations
-        run: python manage.py migrate
+#       - name: Run migrations
+#         run: python manage.py migrate
       
       # Run all tests with verbose flag
       - name: Run all tests
