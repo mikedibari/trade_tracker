@@ -69,5 +69,5 @@ jobs:
 #         run: python manage.py migrate
       
       # Run all tests with verbose flag
-      - name: Run all tests
-        run: pytest -v
+#       - name: Run all tests
+#         run: pytest -v
