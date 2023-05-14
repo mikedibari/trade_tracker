@@ -79,9 +79,13 @@ jobs:
 #       - name: Run migrations
 #         run: python manage.py migrate
       
-      # Run all tests with verbose flag
-      - name: Run all tests
-        run: pytest -v
+      # # Run all tests with verbose flag
+      # - name: Run all tests
+      #   run: pytest -v
+
+      - name: Run tests
+        run: pytest --ds=myproject.settings_github --pdb
+
 
       
 
