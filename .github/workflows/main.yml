@@ -84,7 +84,7 @@ jobs:
       #   run: pytest -v
 
       - name: Run tests
-        run: pytest --ds=stocks.settings_github --pdb
+        run: pytest -v --ds=stocks.settings_github --pdb
 
 
       
