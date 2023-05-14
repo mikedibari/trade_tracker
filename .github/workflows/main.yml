@@ -72,7 +72,7 @@ jobs:
         #   DJANGO_SETTINGS_MODULE: stocks.settings_github
         run: |
           sqlite3 test.db "create table mytable (id integer primary key, name text);"
-          python manage.py migrate --database=test
+          python manage.py migrate
 
 
       # Runs database migrations on the Django app
@@ -81,7 +81,7 @@ jobs:
       
       # Run all tests with verbose flag
       - name: Run all tests
-        run: python manage.py test
+        run: pytest -v
 
       
 
