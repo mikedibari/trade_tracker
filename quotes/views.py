@@ -107,19 +107,19 @@ def get_latest(ticker, key):
 
 
 def home(request): # request from web browser
-    import requests
-    import json
+    # import requests
+    # import json
 
-    api_key = settings.API_KEY
+    # api_key = settings.API_KEY
 
     if request.method == 'POST': # someone filled out form and clicked the button
         ticker = request.POST['ticker'] # name of input box
 
-        api_url = "https://api.iex.cloud/v1/data/core/quote/" + ticker + "?token=" + api_key
-        api_request = requests.get(api_url)
+        # api_url = "https://api.iex.cloud/v1/data/core/quote/" + ticker + "?token=" + api_key
+        # api_request = requests.get(api_url)
     
         try:
-            api = json.loads(api_request.content)
+            api = get_api(ticker)
             for item in api:
                 instance = Quote(ticker=item['symbol'], company_name=item['companyName'])
                 instance.save()
