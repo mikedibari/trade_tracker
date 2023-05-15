@@ -71,7 +71,7 @@ jobs:
         # env:
         #   DJANGO_SETTINGS_MODULE: stocks.settings_github
         run: |
-          sqlite3 test.db "create table mytable (id integer primary key, name text);"
+          sqlite3 test.db
           python manage.py migrate --database=test
 
 
