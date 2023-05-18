@@ -4,11 +4,11 @@ Trade Tracker is a web app that allows users to get stock quotes, journal trades
 
 ## Features
 
-- Enter a ticker and get quotes from 3rd party API using GET and POST requests.
-- Save trades, including ticker, # of shares, price, open and close date using POST requests.
-- Delete trade info using DELETE requests.
-- Edit trade info (shares, price, etc.) using PUT requests.
-- Track trading performance using GET requests (future feature).
+- Enter a ticker and get quotes from 3rd party API.
+- Save trades, including ticker, # of shares, price, open and close date.
+- Delete trade info.
+- Update trade info (shares, price, etc.).
+- Track trading performance (future feature).
 - Show charts and technical analysis indicators (future feature).
 - Generate buy/sell signals (future feature).
 - Calculate position size based on Kelly Criterion and perform Monte Carlo simulations of Kelly formula (future feature).

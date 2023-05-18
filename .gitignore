@@ -12,6 +12,9 @@ __pycache__/
 # Ignore database file
 # db.sqlite3
 
+# Ignore database backup file
+data.json
+
 # Ignore static files and media
 staticfiles/
 media/
