@@ -15,5 +15,6 @@ urlpatterns = [
     path('delete_quote/<int:quote_id>/', views.delete_quote, name="delete_quote"),
     path('update_position/<int:stock_id>/', views.update_position, name="update_position"),
     path('save_position/', views.save_position, name="save_position"),
+    path('add_quote/', views.add_quote, name="add_quote"),
     
 ]

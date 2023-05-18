@@ -22,14 +22,13 @@
             <tr>
                 <td>{{ item.ticker }}</td>
                 <td>{{ item.company_name }}</td>
-                <td>{{ item.latest_price }}</td>
+                <td>{{ item.latest_price|floatformat:2 }}</td>
                 <td>{{ item.latest_time|date:"Y-m-d H:i" }}</td>
-                <td>{{ item.change }}</td>
-                <td>{{ item.change_percent }}</td>
+                <td>{{ item.change|floatformat:2 }}</td>
+                <td>{{ item.change_percent|floatformat:2 }}%</td>
                 <td>
                     <form method="post" action="{% url 'delete_quote' item.quote_id %}">
-                        {% csrf_token %}
-                        <!-- <input type="hidden" name="quote_id" value="{{ item.quote_id }}"> -->
+                        {% csrf_token %}                        
                         <button type="submit">Delete</button>
                     </form>
                 </td>

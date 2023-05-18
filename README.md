@@ -8,14 +8,14 @@ Trade Tracker is a web app that allows users to get stock quotes, journal trades
 - Save trades, including ticker, # of shares, price, open and close date using POST requests.
 - Delete trade info using DELETE requests.
 - Edit trade info (shares, price, etc.) using PUT requests.
-- Track portfolio performance using GET requests.
+- Track trading performance using GET requests (future feature).
 - Show charts and technical analysis indicators (future feature).
 - Generate buy/sell signals (future feature).
 - Calculate position size based on Kelly Criterion and perform Monte Carlo simulations of Kelly formula (future feature).
 
 ## Database Schema
 
-The app uses a SQLite database with the following schema:
+The app uses a PostgreSQL database with the following schema:
 
 ### Stocks table
 
@@ -35,7 +35,7 @@ The app uses a SQLite database with the following schema:
 | ticker      | varchar   | Stock symbol          |
 | company_name| varchar   | Company name          |
 
-### Users table
+### Users table (future feature)
 
 | Column   | Data Type | Description              |
 | -------- | --------- | ------------------------ |
@@ -43,23 +43,68 @@ The app uses a SQLite database with the following schema:
 | password | varchar   | User's password (hashed) |
 | capital  | float     | User's available capital |
 
-## Installation
+## Project Installation
 
-1. Clone the repository to your local machine.
-2. Install Python 3.x.
-3. Install the required packages using the command pip install -r requirements.txt.
-4. Create a .env file in the root directory of the project and set the api_key environment variable using Python decouple: api_key=<your_iexcloud_api_key>
-5. Run the server using python manage.py runserver
-6. Access the app by navigating to `http://localhost:8000` in your web browser.
+Follow these steps to install and set up the project:
+
+1. Clone the repository:
+
+   ```shell
+   git clone https://github.com/your-username/your-project.git
+   cd your-project
+   ```
+
+2. Set up a virtual environment (optional but recommended):
+
+   ```shell
+   python -m venv env
+   source env/bin/activate   # For Linux/Mac
+   env\Scripts\activate     # For Windows
+   ```
+
+3. Install the project dependencies:
+
+   ```shell
+   pip install -r requirements.txt
+   ```
+
+4. Set up the PostgreSQL database:
+
+   - Make sure you have PostgreSQL installed and running on your system.
+   - Create a new PostgreSQL database for your project.
+   - Update the database configuration in the `settings.py` file with the appropriate credentials and connection details for your PostgreSQL database.
+
+5. Apply database migrations:
+
+   ```shell
+   python manage.py migrate
+   ```
+
+6. (Optional) Create a superuser account:
+
+   ```shell
+   python manage.py createsuperuser
+   ```
+
+7. Run the development server:
+
+   ```shell
+   python manage.py runserver
+   ```
+
+The application should now be running locally on `http://localhost:8000`. Access it in your web browser to start using the project.
+
+**Note:** If you're deploying the project to a production environment, make sure to follow the appropriate steps for setting up and configuring a PostgreSQL database in your production environment.
 
 ## Usage
 
 To use the app, follow these steps:
 
 1. Enter a ticker symbol to get quotes from the 3rd party API.
-2. Journal trades by entering the ticker, # of shares, price, open and close date.
-3. Delete or edit trade information as needed.
-4. Track your portfolio performance by retrieving your trades.
+2. Add or delete quotes from the watchlist.
+3. Journal trades by entering the ticker, # of shares, price, open and close date.
+4. Delete or edit trade information as needed.
+5. Track your portfolio performance by retrieving your trades.
 
 ## License
 

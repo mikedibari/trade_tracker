@@ -4,14 +4,6 @@
 <h1>Add Position:</h1>
 <br/>
 
-
-
-<!-- <form method="post">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit">Submit</button>
-</form> -->
-
 <form method="post">
   {% csrf_token %}
     <div class="row">
@@ -65,7 +57,7 @@
         
           <tr>
             <th scope="row">{{ item.ticker|upper }}</th>
-            <td>${{ item.latest_price|floatformat:2 }}</td>
+            <td>{{ item.latest_price|floatformat:2 }}</td>
             <td>{{ item.open_date|date:"Y-m-d" }}</td>
             <td>{{ item.buy_price|floatformat:2 }}</td>
             <td>{{ item.quantity|floatformat:0 }}</td>
@@ -74,7 +66,7 @@
             <td>{{ item.close_date|date:"Y-m-d" }}</td>
             <td>{{ item.sell_price|floatformat:2 }}</td>
             <td>{{ item.profit_loss_dollars|floatformat:2 }}</td>
-            <td>{{ item.profit_loss_percent|floatformat:2 }}</td>
+            <td>{{ item.profit_loss_percent|floatformat:2 }}%</td>
             <td>
               <form method="post" action="{% url 'update_position' item.stock_id %}">
                 {% csrf_token %}

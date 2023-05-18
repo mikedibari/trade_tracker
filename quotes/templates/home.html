@@ -5,8 +5,6 @@
 	{{ ticker }}
 {% endif %}
 
-{{ all_quotes.price }}
-
 {% if api %}
 	{% if api.0 is None %}
 		There was a problem with your ticker symbol.
@@ -15,16 +13,82 @@
         Something went wrong...
     {% else %}
 
-		<h1>{{ api.0.companyName }}</h1><br/>
-		Price: ${{ api.0.latestPrice }}<br/>
-		Previous Close: {{ api.0.previousClose }}<br/>
-		Market Cap: {{ api.0.marketCap }}<br/>
-		YTD Change: {{ api.0.ytdChange }}<br/>
-		52Wk High: {{ api.0.week52High }}<br/>
-		52Wk Low: {{ api.0.week52Low }}<br/>
+		<h4>{{ api.0.companyName }}</h4>
+		<table class="table table-borderless table-sm">
+			<thead>
+			  <tr>
+				<th scope="row"><h2>${{ api.0.latestPrice|floatformat:2 }}</h2></th>
+				{% if api.0.change >= 0 %}
+				<th scope="row"><h2 style="color:green">{{ api.0.change|floatformat:2 }}</h2></th>
+				{% else %}	
+				<th scope="row"><h2 style="color:red">{{ api.0.change|floatformat:2 }}</h2></th>
+				{% endif %}			
+			  </tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>{{ api.0.latestTime }}</td>
+					<td>{{ change_percent|floatformat:2 }}%</td>				  
+				</tr>
+				<tr>
+					<td></td>
+					<td>
+						<form method="post" action="{% url 'add_quote' %}">
+						{% csrf_token %}
+						<input type="hidden" name="ticker" value="{{ api.0.symbol }}">
+						<input type="hidden" name="company_name" value="{{ api.0.companyName }}">
+						<button type="submit">Add to Watchlist</button>
+						</form>
+					</td>
+				</tr>
+			</tbody>
+		  </table>
 
+		{% if png_chart %}
+			<img src="data:image/png;base64,{{ png_chart }}" />
+		{% endif %}
+
+		<table class="table table-borderless table-sm">
+			<thead>
+			  <tr>
+				<th scope="row">High</th>
+				<td>{{ api.0.high }}</td>
+				<th scope="row">Volume</th>
+				<td>{{ api.0.latestVolume }}</td>
+			  </tr>
+			</thead>
+			<tbody>
+			  <tr>
+				<th scope="row">Low</th>
+				<td>{{ api.0.low }}</td>
+				<th scope="row">Avg Vol</th>
+				<td>{{ api.0.avgTotalVolume }}</td>
+			  </tr>
+			  <tr>
+				<th scope="row">Prev Close</th>
+				<td>{{ api.0.previousClose }}</td>
+				<th scope="row">52wk High</th>
+				<td>{{ api.0.week52High }}</td>
+			  </tr>
+			  <tr>
+				<th scope="row">Open</th>
+				<td>{{ api.0.open }}</td>
+				<th scope="row">52wk Low</th>
+				<td>{{ api.0.week52Low }}</td>
+			  </tr>
+			  <tr>
+				<th scope="row">P/E</th>
+				<td>{{ api.0.peRatio }}</td>
+				<th scope="row">Mkt Cap</th>
+				<td>{{ api.0.marketCap }}</td>
+			  </tr>
+			</tbody>
+		  </table>
 		
 	{% endif %}
 {% endif %}
+
+
+
 
 {% endblock %}
